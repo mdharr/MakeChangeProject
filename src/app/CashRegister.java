@@ -156,7 +156,7 @@ public class CashRegister {
 			
 			// created String to output exact change in dollars and cents
 			
-			String makeChangeFinale = "Your change comes out to: " + ifZeroTwenty(twentyResult) + ifZeroTen(tenResult) + ifZeroFive(fiveResult) + ifZeroOne(oneResult) + ifZeroQuarter((int) quarterResult) + ifZeroDime((int) dimeResult) + ifZeroNickel((int) nickelResult) + ifZeroPenny((int) pennyResult);
+			String makeChangeFinale = "In dollars and cents that will be: " + ifZeroTwenty(twentyResult) + ifZeroTen(tenResult) + ifZeroFive(fiveResult) + ifZeroOne(oneResult) + ifZeroQuarter((int) quarterResult) + ifZeroDime((int) dimeResult) + ifZeroNickel((int) nickelResult) + ifZeroPenny((int) pennyResult);
 			if(makeChangeFinale.endsWith(", ")) {
 				String substring = makeChangeFinale.substring(0, makeChangeFinale.length() - 2);
 				String makeChangeFinaleV2 = substring + ".";
