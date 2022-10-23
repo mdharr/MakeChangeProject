@@ -1,12 +1,14 @@
 package app;
 
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class CashRegister {
 	
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
+		DecimalFormat df = new DecimalFormat("0.00");
 		
 		int twenty = 20;
 		int twentyResult = 0;
@@ -16,127 +18,143 @@ public class CashRegister {
 		int fiveResult = 0;
 		int one = 1;
 		int oneResult = 0;
-		int quarterResult = 0;
+		double quarterResult = 0;
 		double quarter = 0.25;
-		int dimeResult = 0;
+		double dimeResult = 0;
 		double dime = 0.10;
-		int nickelResult = 0;
+		double nickelResult = 0;
 		double nickel = 0.05;
-		int pennyResult = 0;
+		double pennyResult = 0;
 		double penny = 0.01;
 
 		
 		// User enters price of item
 		System.out.println("Please enter price of item: ");
 		double itemCost = scanner.nextDouble();
+		scanner.nextLine();
 		
 		// User enters amount tendered
 		System.out.println("Please enter amount tendered: ");
 		double amountTendered = scanner.nextDouble();
-		
-		System.out.println("");
+		scanner.nextLine();
 		
 		// if statement to determine whether or not the customer provided enough money to cover the cost of the item
 		if (itemCost == amountTendered) {
 			System.out.println("Thankfully you provided the exact amount needed. I just ran out of change.");
-		} else if (itemCost > amountTendered) {
-			System.out.println("Hang on there pal! That's not enough!");
+		} 
+		
+		if (itemCost > amountTendered) {
 			double owedResult = calculateAmountStillOwed(itemCost, amountTendered);
 			if (owedResult < 1) {
 				int owedResultInCents = (int)(owedResult * 100);
-				System.out.print("You still owe " + owedResultInCents + "c! Please pay the remaining amount.");
+				System.err.print("Hang on there pal! You still owe " + owedResultInCents + "c!");
 			} else {
-				System.out.print("You still owe $" + owedResult + "! ");
+				System.err.print("Hang on there pal! You still owe $" + df.format(owedResult) + "! ");
 			}
-			System.out.println("");
-			double remainder = itemCost - amountTendered;
-			while (remainder < owedResult) {
-				System.out.print("Please pay the remaining amount: ");
-				remainder = scanner.nextDouble();
-				if (remainder == owedResult) {
-					System.out.println("Correct amount received. Thank you.");
-				} else {
-					continue;
-				}
-			}
-		} else {
-			System.out.println("One moment please while I calculate your change...");
-			double changeResult = calculateTotalChange(itemCost, amountTendered);
-			System.out.println("You are owed the amount of $" + changeResult + " in change.");
-			System.out.println("One moment while your change is prepared...");
-			if (changeResult >= 20) {
-				while(changeResult / twenty >= 1) {
-					twentyResult++;
-				}
-			}
+		} 
+		
+		double changeResult = calculateTotalChange(itemCost, amountTendered);
+		
+		if (amountTendered > itemCost) {
+			System.out.println("Your change comes out to $" + df.format(changeResult) + ".");
+
+		}
+		
+		if(amountTendered > itemCost) {
 			
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
+			System.out.println(changeResult);
+					
+			
+			twentyResult = (int) (changeResult / twenty);
+
 			changeResult = changeResult - (twenty * twentyResult);
 			
-			if (changeResult >= 10) {
-				while(changeResult / ten >= 1) {
-					tenResult++;
-				}
-			}
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
+
 			
+			System.out.println(changeResult);
+
+			tenResult = (int) changeResult / ten;
+
 			changeResult = changeResult - (ten * tenResult);
 			
-			if (changeResult >= 5) {
-				while(changeResult / five >= 1) {
-					fiveResult++;
-				}
-			}
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
+			
+			System.out.println(changeResult);
+
+
+			fiveResult = (int) changeResult / five;
+			
 			changeResult = changeResult - (five * fiveResult);
 			
-			if (changeResult >= 1) {
-				while(changeResult / one >= 1) {
-					oneResult++;
-				}
-			}
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
+			
+			System.out.println(changeResult);
+
+			oneResult = (int) changeResult / one;
+			
 			changeResult = changeResult - (one * oneResult);
 			
-			if (changeResult >= 0.25) {
-				while(changeResult / quarter >= 1) {
-					quarterResult++;
-				}
-			}
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
+			
+			System.out.println(changeResult);
+
+			quarterResult = changeResult / quarter;
+			
 			changeResult = changeResult - (quarter * quarterResult);
 			
-			if (changeResult >= 0.10) {
-				while(changeResult / dime >= 1) {
-					dimeResult++;
-				}
-			}			
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
+			
+			System.out.println(changeResult);
+			
+			dimeResult = changeResult / dime;
+			
 			changeResult = changeResult - (dime * dimeResult);
 			
-			if (changeResult >= 0.05) {
-				while(changeResult / nickel >= 1) {
-					nickelResult++;
-				}
-			}
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
+			
+			System.out.println(changeResult);
+
+			
+			nickelResult = changeResult / nickel;
+			
 			changeResult = changeResult - (nickel * nickelResult);
 			
-			if (changeResult >= 0.01) {
-				while(changeResult / penny >= 1) {
-					pennyResult++;
-				}
-			}
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
-			changeResult = changeResult - (penny * pennyResult);
-			System.out.println("Your change comes out to: " + ifZeroTwenty(twentyResult) + ifZeroTen(tenResult) + ifZeroFive(fiveResult) + ifZeroOne(oneResult) + ifZeroQuarter(quarterResult) + ifZeroDime(dimeResult) + ifZeroNickel(nickelResult) + ifZeroPenny(pennyResult));
-			System.out.println("Thank you, come again.");
 			
-			scanner.close();
+			System.out.println(changeResult);
+
+			
+			pennyResult = changeResult / penny;
+			
+			changeResult = changeResult - (penny * pennyResult);
+			
+			changeResult = Math.round(changeResult * 100.0) / 100.0;
+
+			
+			System.out.println(changeResult);
+	
+			System.out.println("Your change comes out to: " + ifZeroTwenty(twentyResult) + ifZeroTen(tenResult) + ifZeroFive(fiveResult) + ifZeroOne(oneResult) + ifZeroQuarter((int) quarterResult) + ifZeroDime((int) dimeResult) + ifZeroNickel((int) nickelResult) + ifZeroPenny((int) pennyResult));
+			System.out.println("Thank you, come again.");
+			// WIP possible solution to getting rid of last comma
+			// if (String.length().equals(",") {
+			//     
+			// }
 		}
-	}
+	
+	}	
+
 	
 	public static double calculateTotalChange(double cost, double change) {
 		// Calculate the total amount to be returned to the customer
-		double result = (cost - change) * -1;
+		double result = (change - cost);
 		return result;
 	}
 	
@@ -232,7 +250,6 @@ public class CashRegister {
 			result = Integer.toString(a) + " pennies.";
 		}
 		return result;
-	}
-	
+	}	
 
 }
