@@ -12,20 +12,27 @@ public class CashRegister {
 		
 		int twenty = 20;
 		int twentyResult = 0;
+		
 		int ten = 10;
 		int tenResult = 0;
+		
 		int five = 5;
 		int fiveResult = 0;
+		
 		int one = 1;
 		int oneResult = 0;
-		double quarterResult = 0;
+		
 		double quarter = 0.25;
-		double dimeResult = 0;
+		int quarterResult = 0;		
+
 		double dime = 0.10;
-		double nickelResult = 0;
+		int dimeResult = 0;
+
 		double nickel = 0.05;
-		double pennyResult = 0;
+		int nickelResult = 0;
+		
 		double penny = 0.01;
+		int pennyResult = 0;
 
 		
 		// User enters price of item
@@ -61,9 +68,11 @@ public class CashRegister {
 		}
 		
 		if(amountTendered > itemCost) {
+			// step by step calculations for change to be given back to customer
 			
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
-			System.out.println(changeResult);
+			
+			//	System.out.println(changeResult);
 					
 			
 			twentyResult = (int) (changeResult / twenty);
@@ -73,7 +82,8 @@ public class CashRegister {
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
 			
-			System.out.println(changeResult);
+			//	System.out.println(changeResult);
+			
 
 			tenResult = (int) changeResult / ten;
 
@@ -82,7 +92,7 @@ public class CashRegister {
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
 			
-			System.out.println(changeResult);
+			//	System.out.println(changeResult);
 
 
 			fiveResult = (int) changeResult / five;
@@ -92,7 +102,8 @@ public class CashRegister {
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
 			
-			System.out.println(changeResult);
+			//	System.out.println(changeResult);
+			
 
 			oneResult = (int) changeResult / one;
 			
@@ -101,52 +112,61 @@ public class CashRegister {
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
 			
-			System.out.println(changeResult);
+			//	System.out.println(changeResult);
+			
 
-			quarterResult = changeResult / quarter;
+			quarterResult = (int) (changeResult / quarter);
 			
 			changeResult = changeResult - (quarter * quarterResult);
 			
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
 			
-			System.out.println(changeResult);
+			//	System.out.println(changeResult);
 			
-			dimeResult = changeResult / dime;
+			
+			dimeResult = (int) (changeResult / dime);
 			
 			changeResult = changeResult - (dime * dimeResult);
 			
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
 			
-			System.out.println(changeResult);
+			//	System.out.println(changeResult);
 
 			
-			nickelResult = changeResult / nickel;
+			nickelResult = (int) (changeResult / nickel);
 			
 			changeResult = changeResult - (nickel * nickelResult);
 			
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
 			
-			System.out.println(changeResult);
+			//	System.out.println(changeResult);
 
 			
-			pennyResult = changeResult / penny;
+			pennyResult = (int) (changeResult / penny);
 			
 			changeResult = changeResult - (penny * pennyResult);
 			
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 
 			
-			System.out.println(changeResult);
-	
-			System.out.println("Your change comes out to: " + ifZeroTwenty(twentyResult) + ifZeroTen(tenResult) + ifZeroFive(fiveResult) + ifZeroOne(oneResult) + ifZeroQuarter((int) quarterResult) + ifZeroDime((int) dimeResult) + ifZeroNickel((int) nickelResult) + ifZeroPenny((int) pennyResult));
-			System.out.println("Thank you, come again.");
-			// WIP possible solution to getting rid of last comma
-			// if (String.length().equals(",") {
-			//     
-			// }
+			//	System.out.println(changeResult);
+			
+			// created String to output exact change in dollars and cents
+			
+			String makeChangeFinale = "Your change comes out to: " + ifZeroTwenty(twentyResult) + ifZeroTen(tenResult) + ifZeroFive(fiveResult) + ifZeroOne(oneResult) + ifZeroQuarter((int) quarterResult) + ifZeroDime((int) dimeResult) + ifZeroNickel((int) nickelResult) + ifZeroPenny((int) pennyResult);
+			if(makeChangeFinale.endsWith(", ")) {
+				String substring = makeChangeFinale.substring(0, makeChangeFinale.length() - 2);
+				String makeChangeFinaleV2 = substring + ".";
+				System.out.println(makeChangeFinaleV2);
+				farewell();
+			} else {
+				System.out.println(makeChangeFinale);
+				farewell();
+			}
+						
 		}
 	
 	}	
@@ -163,6 +183,7 @@ public class CashRegister {
 		double result = (cost - given);
 		return result;
 	}
+	
 	public static String ifZeroTwenty(int a) {
 		String result = "";
 		if (a == 0) {
@@ -174,6 +195,7 @@ public class CashRegister {
 		}
 		return result;
 	}
+	
 	public static String ifZeroTen(int a) {
 		String result = "";
 		if (a == 0) {
@@ -185,6 +207,7 @@ public class CashRegister {
 		}
 		return result;
 	}
+	
 	public static String ifZeroFive(int a) {
 		String result = "";
 		if (a == 0) {
@@ -196,6 +219,7 @@ public class CashRegister {
 		}
 		return result;
 	}
+	
 	public static String ifZeroOne(int a) {
 		String result = "";
 		if (a == 0) {
@@ -207,6 +231,7 @@ public class CashRegister {
 		}
 		return result;
 	}
+	
 	public static String ifZeroQuarter(int a) {
 		String result = "";
 		if (a == 0) {
@@ -218,6 +243,7 @@ public class CashRegister {
 		}
 		return result;
 	}
+	
 	public static String ifZeroDime(int a) {
 		String result = "";
 		if (a == 0) {
@@ -229,6 +255,7 @@ public class CashRegister {
 		}
 		return result;
 	}
+	
 	public static String ifZeroNickel(int a) {
 		String result = "";
 		if (a == 0) {
@@ -240,6 +267,7 @@ public class CashRegister {
 		}
 		return result;
 	}
+	
 	public static String ifZeroPenny(int a) {
 		String result = "";
 		if (a == 0) {
@@ -250,6 +278,9 @@ public class CashRegister {
 			result = Integer.toString(a) + " pennies.";
 		}
 		return result;
-	}	
+	}
+	public static void farewell() {
+		System.out.println("Thank you, come again!");
+	}
 
 }
