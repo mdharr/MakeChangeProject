@@ -168,7 +168,7 @@ public class CashRegister {
 			}
 						
 		}
-	
+		scanner.close();
 	}	
 
 	
