@@ -18,7 +18,7 @@ If the amount tendered exceeds the item cost, the user is told the total amount 
 
 ### **Lessons Learned**
 
-This being the largest, most sophisticated program that I have built up to this point, I quickly learned how important it is to think ahead and not only determine what variables will be needed in any given scope, but also mapping out step-by-step how to reach the end result.
+This being the largest, most sophisticated program that I have built up to this point, I quickly learned how important it is to think ahead and not only determine what variables will be needed in any given scope, but also mapping out, step-by-step, how to reach the end result.
 
 I found that it is more beneficial to keep things as simple as possible. Early on I had far too many if/else statements. The complexity quickly exceeded my current debugging ability, so I made the decision to dial it back and tell myself that not every if statement required else if/else. Simplifying this aspect of the code greatly improved readability. Another aspect that added unnecessary headache were my stubborn attempts to implement while loops at every given opportunity.
 
