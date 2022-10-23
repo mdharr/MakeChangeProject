@@ -8,11 +8,13 @@ public class CashRegister {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
+		
 		DecimalFormat df = new DecimalFormat("0.00");
 		
+		// initializing variables for various currency types and counters to keep track of each
 		int twenty = 20;
 		int twentyResult = 0;
-		
+
 		int ten = 10;
 		int tenResult = 0;
 		
@@ -50,18 +52,20 @@ public class CashRegister {
 			System.out.println("Thankfully you provided the exact amount needed. I just ran out of change.");
 		} 
 		
+		// if statement that outputs amount still owed by the customer if item cost exceeds money tendered
 		if (itemCost > amountTendered) {
 			double owedResult = calculateAmountStillOwed(itemCost, amountTendered);
 			if (owedResult < 1) {
 				int owedResultInCents = (int)(owedResult * 100);
-				System.err.print("Hang on there pal! You still owe " + owedResultInCents + "c!");
+				System.err.print("Hang on there pal! You still owe " + owedResultInCents + "c! Come back when you've got more money.");
 			} else {
-				System.err.print("Hang on there pal! You still owe $" + df.format(owedResult) + "! ");
+				System.err.print("Hang on there pal! You still owe $" + df.format(owedResult) + "! Come back when you've got more money.");
 			}
 		} 
 		
 		double changeResult = calculateTotalChange(itemCost, amountTendered);
 		
+		// if statement for calculating total amount owed to customer before calculating dollar bill and coin amounts in next step
 		if (amountTendered > itemCost) {
 			System.out.println("Your change comes out to $" + df.format(changeResult) + ".");
 
@@ -72,9 +76,10 @@ public class CashRegister {
 			
 			changeResult = Math.round(changeResult * 100.0) / 100.0;
 			
-			//	System.out.println(changeResult);
-					
 			
+			//	System.out.println(changeResult);
+			
+					
 			twentyResult = (int) (changeResult / twenty);
 
 			changeResult = changeResult - (twenty * twentyResult);
@@ -171,19 +176,19 @@ public class CashRegister {
 		scanner.close();
 	}	
 
-	
+	// Calculate the total amount to be returned to the customer
 	public static double calculateTotalChange(double cost, double change) {
-		// Calculate the total amount to be returned to the customer
 		double result = (change - cost);
 		return result;
 	}
 	
+	// Calculate the amount still owed in the case that the full amount was not provided
 	public static double calculateAmountStillOwed(double cost, double given) {
-		// Calculate the amount still owed in the case that the full amount was not provided
 		double result = (cost - given);
 		return result;
 	}
 	
+	// determine String output for twenty dollar bills
 	public static String ifZeroTwenty(int a) {
 		String result = "";
 		if (a == 0) {
@@ -196,6 +201,7 @@ public class CashRegister {
 		return result;
 	}
 	
+	// determine String output for ten dollar bills
 	public static String ifZeroTen(int a) {
 		String result = "";
 		if (a == 0) {
@@ -208,6 +214,7 @@ public class CashRegister {
 		return result;
 	}
 	
+	// determine String output for five dollar bills
 	public static String ifZeroFive(int a) {
 		String result = "";
 		if (a == 0) {
@@ -220,6 +227,7 @@ public class CashRegister {
 		return result;
 	}
 	
+	// determine String output for one dollar bills
 	public static String ifZeroOne(int a) {
 		String result = "";
 		if (a == 0) {
@@ -232,6 +240,7 @@ public class CashRegister {
 		return result;
 	}
 	
+	// determine String output for quarters
 	public static String ifZeroQuarter(int a) {
 		String result = "";
 		if (a == 0) {
@@ -244,6 +253,7 @@ public class CashRegister {
 		return result;
 	}
 	
+	// determine String output for dimes
 	public static String ifZeroDime(int a) {
 		String result = "";
 		if (a == 0) {
@@ -256,6 +266,7 @@ public class CashRegister {
 		return result;
 	}
 	
+	// determine String output for nickels
 	public static String ifZeroNickel(int a) {
 		String result = "";
 		if (a == 0) {
@@ -268,6 +279,7 @@ public class CashRegister {
 		return result;
 	}
 	
+	// determine String output for pennies
 	public static String ifZeroPenny(int a) {
 		String result = "";
 		if (a == 0) {
@@ -279,6 +291,7 @@ public class CashRegister {
 		}
 		return result;
 	}
+	
 	public static void farewell() {
 		System.out.println("Thank you, come again!");
 	}
